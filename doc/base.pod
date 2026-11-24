@@ -589,6 +589,12 @@ The following tables lists the valid auth-types
 
 These basic authentication types are fully supported and tested and have no additional requirements.
 
+=item XOAUTH2
+
+The XOAUTH2 mechanism sends the username and OAuth 2.0 bearer access token supplied by C<--auth-user> and C<--auth-password>. The token is used in place of a password and should be treated as a secret. For example, with a token in C<access_token>:
+
+    swaks --server smtp.gmail.com:587 --tls --auth XOAUTH2 --auth-user user@gmail.com --auth-password "$(cat access_token)" --to recipient@example.com
+
 =item LOGIN-INITIAL
 
 This is a variation of the LOGIN auth-type where the username is sent to the server as as part of the initial-response argument to the AUTH LOGIN request.  See L<https://www.rfc-editor.org/rfc/rfc4954#page-3>.

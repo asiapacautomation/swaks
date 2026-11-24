@@ -1026,6 +1026,12 @@ sub do_smtp_auth {
 				$auth_attempted = 1;
 			}
 		}
+		foreach my $type (@{$G::auth_map_t{'XOAUTH2'}}) {
+			if ($btype eq $type) {
+				return(0) if (do_smtp_auth_xoauth2($au, $ap, $type));
+				$auth_attempted = 1;
+			}
+		}
 		foreach my $type (@{$G::auth_map_t{'LOGIN'}}) {
 			if ($btype eq $type) {
 				return(0) if (do_smtp_auth_login($au, $ap, $type));
@@ -1214,6 +1220,17 @@ sub do_smtp_auth_plain {
 	return(do_smtp_gen("AUTH $as " . eb64("\0$u\0$p"), '235', undef, '',
 	                   $G::auth_showpt ? "AUTH $as \\0$u\\0" . ($G::auth_hidepw || $p)
 	                   : "AUTH $as " . eb64("\0$u\0" . ($G::auth_hidepw || $p))));
+}
+
+sub do_smtp_auth_xoauth2 {
+	my $u  = shift; # auth user
+	my $p  = shift; # OAuth 2.0 bearer access token
+	my $as = shift; # auth type
+
+	my $auth_string = "user=$u\001auth=Bearer $p\001\001";
+	return(do_smtp_gen("AUTH $as " . eb64($auth_string), '235', undef, '',
+	                   $G::auth_showpt ? "AUTH $as user=$u\\001auth=Bearer " . ($G::auth_hidepw || $p) . "\\001\\001"
+	                   : "AUTH $as " . eb64("user=$u\001auth=Bearer " . ($G::auth_hidepw || $p) . "\001\001")));
 }
 
 sub do_smtp_helo {
@@ -3745,6 +3762,7 @@ sub process_args {
 		foreach (split(/\s*,\s*/, get_arg('auth_map', $o)),"PLAIN=PLAIN","LOGIN=LOGIN",
 		                          "CRAM-MD5=CRAM-MD5","DIGEST-MD5=DIGEST-MD5",
 		                          "CRAM-SHA1=CRAM-SHA1","NTLM=NTLM","SPA=NTLM","MSN=NTLM",
+		                          "XOAUTH2=XOAUTH2",
 		                          "LOGIN-INITIAL=LOGIN")
 		{
 			if (/^([^=]+)=(.+)$/) {
