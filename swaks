@@ -1226,10 +1226,21 @@ sub do_smtp_auth_xoauth2 {
 	my $u  = shift; # auth user = username@gmail.com
 	my $p  = shift; # auth password = access token
 	my $as = shift; # auth string = XOAUTH2
+	my $r  = '';    # will store smtp response
 
-	return(do_smtp_gen("AUTH $as " . eb64("user=$u\001auth=Bearer $p\001\001"), '235', undef, '',
-	                   $G::auth_showpt ? "AUTH $as user=$u\\001auth=Bearer " . ($G::auth_hidepw || $p) . "\\001\\001"
-	                   : "AUTH $as " . eb64("user=$u\001auth=Bearer " . ($G::auth_hidepw || $p) . "\001\001")));
+	my $ok = do_smtp_gen("AUTH $as " . eb64("user=$u\001auth=Bearer $p\001\001"), '235', \$r, '',
+	                     $G::auth_showpt ? "AUTH $as user=$u\\001auth=Bearer " . ($G::auth_hidepw || $p) . "\\001\\001"
+	                     : "AUTH $as " . eb64("user=$u\001auth=Bearer " . ($G::auth_hidepw || $p) . "\001\001"));
+	return(1) if ($ok);
+
+	# On failure the server sends a 334 challenge carrying a base64 JSON error
+	# and waits for the client to send an empty response, after which it sends
+	# the real failure code.  Send the empty line so the exchange is completed.
+	if ($r =~ /^334 /m) {
+		do_smtp_gen('', '235');
+	}
+
+	return(0);
 }
 
 sub do_smtp_helo {
