@@ -1047,3 +1047,7 @@
 > 20240102 released 20240102.0
 * 20240210 Implement the LOGIN-INITIAL auth type, which forces the
            initial-response form of LOGIN
+* 20261124 Implement the XOAUTH2 auth type (originally contributed in PR #44
+           by desirider).  The access token is supplied as the auth
+           password.  On failure, send the empty response the protocol
+           requires to complete the exchange.
