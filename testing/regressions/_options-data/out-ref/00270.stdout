@@ -13,7 +13,7 @@ Authentication Info:
   password       = 'auth_pass'
   show plaintext = FALSE
   hide password  = FALSE
-  allowed types  = CRAM-MD5, CRAM-SHA1, DIGEST-MD5, LOGIN, LOGIN-INITIAL, MSN, NTLM, PLAIN, SPA
+  allowed types  = CRAM-MD5, CRAM-SHA1, DIGEST-MD5, LOGIN, LOGIN-INITIAL, MSN, NTLM, PLAIN, SPA, XOAUTH2
   extras         = 
   type map       = CRAM-MD5 = CRAM-MD5
                    CRAM-SHA1 = CRAM-SHA1
@@ -21,6 +21,7 @@ Authentication Info:
                    LOGIN = LOGIN, LOGIN-INITIAL
                    NTLM = NTLM, SPA, MSN
                    PLAIN = PLAIN
+                   XOAUTH2 = XOAUTH2
 
 
 

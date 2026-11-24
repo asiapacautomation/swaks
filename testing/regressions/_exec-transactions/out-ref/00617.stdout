@@ -1,0 +1,16 @@
+=== Trying pipe to %TEST_SERVER% --silent --domain pipe   part-0000-connect-standard.txt   part-0106-ehlo-xoauth2.txt   part-0617-auth-xoauth2-fail.txt   part-3000-shutdown-accept.txt   ...
+=== Connected to %TEST_SERVER% --silent --domain pipe   part-0000-connect-standard.txt   part-0106-ehlo-xoauth2.txt   part-0617-auth-xoauth2-fail.txt   part-3000-shutdown-accept.txt   .
+<-  220 SERVER ESMTP ready
+ -> EHLO hserver
+<-  250-SERVER Hello Server [1.1.1.1]
+<-  250-STARTTLS
+<-  250-PIPELINING
+<-  250-AUTH PLAIN LOGIN XOAUTH2
+<-  250 HELP
+ -> AUTH XOAUTH2 dXNlcj12YWxpZHVzZXIBYXV0aD1CZWFyZXIgdmFsaWRwYXNzd29yZAEB
+<** 334 eyJzdGF0dXMiOiI0MDEiLCJzY2hlbWVzIjoiQmVhcmVyIiwic2NvcGUiOiJodHRwczovL21haWwuZ29vZ2xlLmNvbS8ifQ==
+ -> 
+<** 535 5.7.8 Username and Password not accepted
+ -> QUIT
+<-  221 SERVER closing connection
+=== Connection closed with child process.

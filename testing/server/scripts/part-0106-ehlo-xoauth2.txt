@@ -1,0 +1,7 @@
+# advertize XOAUTH2 (in addition to the usual types)
+get_line(); # EHLO
+send_line("250-SERVER Hello Server [1.1.1.1]");
+send_line("250-STARTTLS");
+send_line("250-PIPELINING");
+send_line("250-AUTH PLAIN LOGIN XOAUTH2");
+send_line("250 HELP");

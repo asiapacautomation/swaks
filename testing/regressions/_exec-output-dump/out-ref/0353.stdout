@@ -13,3 +13,4 @@ Authentication Info:
                    NTLM = NTLM, SPA, MSN
                    PLAIN = PLAIN
                    TESTTYPE2 = TESTTYPE2
+                   XOAUTH2 = XOAUTH2

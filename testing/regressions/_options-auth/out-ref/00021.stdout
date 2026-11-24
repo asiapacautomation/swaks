@@ -12,3 +12,4 @@ Authentication Info:
                    LOGIN = LOGIN, LOGIN-INITIAL
                    NTLM = NTLM, SPA, MSN
                    PLAIN = PLAIN
+                   XOAUTH2 = XOAUTH2

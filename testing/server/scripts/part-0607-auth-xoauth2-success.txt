@@ -1,0 +1,4 @@
+#  -> AUTH XOAUTH2 dXNlcj12YWxpZHVzZXIBYXV0aD1CZWFyZXIgdmFsaWRwYXNzd29yZAEB
+get_line();
+# <-  235 Authentication succeeded
+send_line("235 Authentication succeeded");

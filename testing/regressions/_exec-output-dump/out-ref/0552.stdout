@@ -8,7 +8,7 @@ Authentication Info:
   password       = 'TEST_PASS'
   show plaintext = FALSE
   hide password  = PROVIDED_BUT_REMOVED
-  allowed types  = CRAM-MD5, CRAM-SHA1, DIGEST-MD5, LOGIN, LOGIN-INITIAL, MSN, NTLM, PLAIN, SPA
+  allowed types  = CRAM-MD5, CRAM-SHA1, DIGEST-MD5, LOGIN, LOGIN-INITIAL, MSN, NTLM, PLAIN, SPA, XOAUTH2
   extras         = 
   type map       = CRAM-MD5 = CRAM-MD5
                    CRAM-SHA1 = CRAM-SHA1
@@ -16,6 +16,7 @@ Authentication Info:
                    LOGIN = LOGIN, LOGIN-INITIAL
                    NTLM = NTLM, SPA, MSN
                    PLAIN = PLAIN
+                   XOAUTH2 = XOAUTH2
 
 DATA Info:
   data = <<.
@@ -36,7 +37,7 @@ Authentication Info:
   password       = 'PROVIDED_BUT_REMOVED'
   show plaintext = FALSE
   hide password  = PROVIDED_BUT_REMOVED
-  allowed types  = CRAM-MD5, CRAM-SHA1, DIGEST-MD5, LOGIN, LOGIN-INITIAL, MSN, NTLM, PLAIN, SPA
+  allowed types  = CRAM-MD5, CRAM-SHA1, DIGEST-MD5, LOGIN, LOGIN-INITIAL, MSN, NTLM, PLAIN, SPA, XOAUTH2
   extras         = 
   type map       = CRAM-MD5 = CRAM-MD5
                    CRAM-SHA1 = CRAM-SHA1
@@ -44,6 +45,7 @@ Authentication Info:
                    LOGIN = LOGIN, LOGIN-INITIAL
                    NTLM = NTLM, SPA, MSN
                    PLAIN = PLAIN
+                   XOAUTH2 = XOAUTH2
 
 
 
